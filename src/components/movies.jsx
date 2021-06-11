@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {getMovies} from '../services/fakeMovieService';
-import Like from '../common/like.jsx';
+import Like from './common/like.jsx';
+import Pagination from './common/pagination.jsx';
+import {paginate} from '../utils/paginate.js';
 
 class Movies extends Component {
     state = { 
         movies: getMovies(),
+        currentPage: 1,
+        pageSize: 4
      }
 
      handleDelete = movie => {
@@ -18,11 +22,19 @@ class Movies extends Component {
          movies[index]={...movies[index]};
          movies[index].liked = !movies[index].liked;
          this.setState({movies});
-     }
+     };
+
+     handlePageChange = page =>{
+        this.setState({currentPage: page});
+     };
 
      renderTags(){
         const {length: count } = this.state.movies;
+        const {pageSize, currentPage, movies: allMovies} = this.state;
+       
         if(count === 0) return  <p className='alert alert-info'>There are no movies in this database.</p>;
+
+        const movies = paginate(allMovies, currentPage, pageSize);
 
         return <React.Fragment>
                 <p className='alert alert-info'>Showing {count} movies in the database.</p>
@@ -38,7 +50,7 @@ class Movies extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.movies.map(movie =>
+                        {movies.map(movie =>
                             <tr key={movie._id}> 
                                 <td>{movie.title}</td>
                                 <td>{movie.genre.name}</td>
@@ -49,9 +61,10 @@ class Movies extends Component {
                             </tr>)}
                     </tbody>
                 </table>
+                <Pagination itemsCount={count} pageSize={pageSize} currentPage={currentPage} onPageChange={this.handlePageChange} />
             </React.Fragment>;
      }
-
+  
     render() { 
         return  <React.Fragment>{this.renderTags()}</React.Fragment>;
     }
