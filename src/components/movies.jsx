@@ -43,7 +43,7 @@ class Movies extends Component {
      };
 
      handleSort = path =>{
-        const sortColumn = {...this.state.sortColumnn};
+        const sortColumn = {...this.state.sortColumn};
         if(sortColumn.path === path)
             sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
         else{
