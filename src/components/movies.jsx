@@ -77,14 +77,14 @@ class Movies extends Component {
         const {totalCount, data: movies} = this.getPageData();
 
         return <div className='row'>
-                    <div className="col-2">
+                    <div className="col-sm-3">
                         <ListGroup items={genres}
                                     selectedItem= {this.state.selectedGenre} 
                                     onItemSelect={this.handleGenreSelect}
                         />
                     </div>
                     <div className="col">
-                        <Link className="btn btn-primary mb-2" to='/movies/new'>New Movie</Link>
+                        <Link className="btn btn-primary m-2" to='/movies/new'>New Movie</Link>
                         <p >Showing {totalCount} movies in the database.</p>
                         <SearchBox value={this.state.searchQuery} onChange={this.handleSearch} />
                         <MoviesTable movies={movies} 
