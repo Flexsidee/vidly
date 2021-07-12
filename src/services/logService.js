@@ -10,5 +10,5 @@ function log(error) {
 
 export default {
   init,
-  log
+  log,
 };

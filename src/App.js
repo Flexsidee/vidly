@@ -9,7 +9,7 @@ import Rentals from './components/rentals';
 import Navbar from './components/navbar';
 import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
-import 'react-toastify/dist/react-toastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 
