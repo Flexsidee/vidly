@@ -97,13 +97,6 @@ class Movies extends Component {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, genres, sortColumn } = this.state;
 
-    if (count === 0)
-      return (
-        <p className="alert alert-info">
-          There are no movies in this database.
-        </p>
-      );
-
     const { totalCount, data: movies } = this.getPageData();
 
     return (
