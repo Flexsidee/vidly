@@ -94,7 +94,6 @@ class Movies extends Component {
   };
 
   renderTags() {
-    const { length: count } = this.state.movies;
     const { pageSize, currentPage, genres, sortColumn } = this.state;
 
     const { totalCount, data: movies } = this.getPageData();
