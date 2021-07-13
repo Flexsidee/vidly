@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
+import { toast } from "react-toastify";
+import { deleteMovies, getMovies } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
@@ -8,6 +9,7 @@ import MoviesTable from "./moviesTable";
 import SearchBox from "./common/searchBox";
 import { Link } from "react-router-dom";
 import _ from "lodash";
+import "react-toastify/dist/ReactToastify.css";
 
 class Movies extends Component {
   state = {
@@ -23,12 +25,23 @@ class Movies extends Component {
   async componentDidMount() {
     const { data } = await getGenres();
     const genres = [{ _id: "", name: "All Genres" }, ...data];
-    this.setState({ movies: getMovies(), genres });
+
+    const { data: movies } = await getMovies();
+    this.setState({ movies, genres });
   }
 
-  handleDelete = (movie) => {
-    const movies = this.state.movies.filter((m) => m._id !== movie._id);
+  handleDelete = async (movie) => {
+    const originalMovies = this.state.movies;
+    const movies = originalMovies.filter((m) => m._id !== movie._id);
     this.setState({ movies });
+
+    try {
+      await deleteMovies(movie._id);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404)
+        toast.error("This movie has already been deleted");
+      this.setState({ movies: originalMovies });
+    }
   };
 
   handleLike = (movie) => {
@@ -104,7 +117,7 @@ class Movies extends Component {
         </div>
         <div className="col">
           <Link className="btn btn-primary m-2" to="/movies/new">
-            New Movie
+            Add a New Movie
           </Link>
           <p>Showing {totalCount} movies in the database.</p>
           <SearchBox
