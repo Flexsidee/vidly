@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import "bootstrap/js/src/collapse.js"; // the import is to make the navbar toggle work
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        Navbar
+        Vidly
       </Link>
       <button
         className="navbar-toggler"
