@@ -21,12 +21,9 @@ code {
 .clickable{
   cursor: pointer;
 }
-
 .footer {
   background-color: rgb(235, 228, 228);
   padding-top: 10px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  margin-top: 50px;
 }
+
