@@ -7,6 +7,7 @@ import ListGroup from "./common/listGroup";
 import { paginate } from "../utils/paginate";
 import MoviesTable from "./moviesTable";
 import SearchBox from "./common/searchBox";
+import Loading from "./common/loading";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.css";
@@ -135,7 +136,8 @@ class Movies extends Component {
   }
 
   render() {
-    return <React.Fragment>{this.renderTags()}</React.Fragment>;
+    if (this.state.genres === []) return <Loading />;
+    else return <React.Fragment>{this.renderTags()}</React.Fragment>;
   }
 }
 
