@@ -13,10 +13,20 @@ code {
     monospace;
 }
 
-.navbar{
+.navbar {
+  background-color: rgb(235, 228, 228);
   margin-bottom: 20px;
 }
 
 .clickable{
   cursor: pointer;
+}
+
+.footer {
+  background-color: rgb(235, 228, 228);
+  padding-top: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

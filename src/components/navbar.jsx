@@ -4,7 +4,7 @@ import "bootstrap/js/src/collapse.js"; // the import is to make the navbar toggl
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/">
         Vidly
       </Link>

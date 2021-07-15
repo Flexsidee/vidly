@@ -1,25 +1,25 @@
-import React, {Component} from 'react';
-import {Route, Redirect, Switch} from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import Movies from './components/movies';
-import MovieForm from './components/movieForm';
-import NotFound from './components/notFound';
-import Customers from './components/customers';
-import Rentals from './components/rentals';
-import Navbar from './components/navbar';
-import LoginForm from './components/loginForm';
-import RegisterForm from './components/registerForm';
+import React, { Component } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Movies from "./components/movies";
+import MovieForm from "./components/movieForm";
+import NotFound from "./components/notFound";
+import Customers from "./components/customers";
+import Rentals from "./components/rentals";
+import Navbar from "./components/navbar";
+import LoginForm from "./components/loginForm";
+import RegisterForm from "./components/registerForm";
+import Footer from "./components/footer";
 import "react-toastify/dist/ReactToastify.css";
-import './App.css';
-
+import "./App.css";
 
 class App extends Component {
-  render() { 
-    return ( 
+  render() {
+    return (
       <React.Fragment>
         <ToastContainer />
         <Navbar />
-        <main className='container'>
+        <main className="container">
           <Switch>
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
@@ -28,13 +28,14 @@ class App extends Component {
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />
-            <Redirect from='/' exact to='/movies' />
-            <Redirect to='/not-found' />
+            <Redirect from="/" exact to="/movies" />
+            <Redirect to="/not-found" />
           </Switch>
         </main>
+        <Footer />
       </React.Fragment>
-     );
+    );
   }
 }
- 
+
 export default App;
