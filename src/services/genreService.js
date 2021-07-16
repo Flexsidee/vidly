@@ -1,5 +1,5 @@
 import http from "./httpService";
 
 export function getGenres() {
-  return http.get("/genrs");
+  return http.get("/genres");
 }
