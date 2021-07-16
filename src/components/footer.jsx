@@ -39,7 +39,9 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <div class="footer-copyright text-center py-3">© : Somade Daniel</div>
+      <div class="footer-copyright text-center text text-secondary">
+        © : Somade Daniel
+      </div>
     </footer>
   );
 };

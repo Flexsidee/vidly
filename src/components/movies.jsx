@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 class Movies extends Component {
   state = {
+    loading: true,
     movies: [],
     genres: [],
     currentPage: 1,
@@ -29,6 +30,7 @@ class Movies extends Component {
 
     const { data: movies } = await getMovies();
     this.setState({ movies, genres });
+    demoAsyncCall().then(() => this.setState({ loading: false }));
   }
 
   handleDelete = async (movie) => {
@@ -136,9 +138,15 @@ class Movies extends Component {
   }
 
   render() {
-    if (this.state.genres === []) return <Loading />;
-    else return <React.Fragment>{this.renderTags()}</React.Fragment>;
+    const { loading } = this.state;
+    if (loading) {
+      return <Loading />; //render null when app is not ready
+    }
+    return <React.Fragment>{this.renderTags()}</React.Fragment>;
   }
+}
+function demoAsyncCall() {
+  return new Promise((resolve) => setTimeout(() => resolve(), 2000));
 }
 
 export default Movies;

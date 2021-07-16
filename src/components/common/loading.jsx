@@ -11,7 +11,7 @@ function Loading() {
         height: "100%",
       }}
     >
-      <div className="loader"></div>
+      <div className="loader"> Loading Movies..</div>
     </div>
   );
 }
