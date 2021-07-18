@@ -29,8 +29,8 @@ class Movies extends Component {
     const genres = [{ _id: "", name: "All Genres" }, ...data];
 
     const { data: movies } = await getMovies();
-    this.setState({ movies, genres });
-    demoAsyncCall().then(() => this.setState({ loading: false }));
+    this.setState({ });
+    demoAsyncCall().then(() => this.setState({movies, genres,  loading: false }));
   }
 
   handleDelete = async (movie) => {

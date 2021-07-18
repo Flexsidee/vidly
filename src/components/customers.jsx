@@ -2,12 +2,14 @@ import React, {Component} from "react";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/searchBox";
+import Loading from "./common/loading";
 import {getCustomers }from "../services/customersService.js";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 
 class Customers extends Component {
   state = {  
+    loading: true,
     customers: [],
     currentPage: 1,
     pageSize: 10,
@@ -15,15 +17,15 @@ class Customers extends Component {
   }
 
   columns = [
-    {path: 'name', label: 'Customers'},
+    {path: 'name', label: 'Users'},
     {path:'email', label: 'Email'}
   ]
 
   async componentDidMount() {
     const {data} = await getCustomers();
     const customers = [...data];
-    this.setState({customers});
-    console.log(customers);
+    
+    demoAsyncCall().then(() => this.setState({customers, loading: false }));
   }
 
   handleSearch = (query) => {
@@ -61,7 +63,7 @@ class Customers extends Component {
     return { totalCount: filtered.length, data: customers };
   };
   
-  render() { 
+  renderTags() { 
     const { pageSize, currentPage, onSort, sortColumn } = this.state;
     
     const { totalCount, data: customers } = this.getPageData();
@@ -87,6 +89,19 @@ class Customers extends Component {
       </React.Fragment>
     );
   }
+
+  render() {
+    const { loading } = this.state;
+    if (loading) {
+      return <Loading />; //render null when app is not ready
+    }
+    return <React.Fragment>{this.renderTags()}</React.Fragment>;
+  }
+}
+
+
+function demoAsyncCall() {
+  return new Promise((resolve) => setTimeout(() => resolve(), 2000));
 }
  
 export default Customers;
