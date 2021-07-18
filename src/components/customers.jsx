@@ -44,7 +44,6 @@ class Customers extends Component {
     const {
       pageSize,
       currentPage,
-      selectedGenre,
       searchQuery,
       customers: allCustomers,
       sortColumn,
@@ -64,7 +63,7 @@ class Customers extends Component {
   };
   
   renderTags() { 
-    const { pageSize, currentPage, onSort, sortColumn } = this.state;
+    const { pageSize, currentPage, sortColumn } = this.state;
     
     const { totalCount, data: customers } = this.getPageData();
     
