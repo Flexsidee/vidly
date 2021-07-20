@@ -29,8 +29,10 @@ class Movies extends Component {
     const genres = [{ _id: "", name: "All Genres" }, ...data];
 
     const { data: movies } = await getMovies();
-    this.setState({ });
-    demoAsyncCall().then(() => this.setState({movies, genres,  loading: false }));
+    this.setState({});
+    demoAsyncCall().then(() =>
+      this.setState({ movies, genres, loading: false })
+    );
   }
 
   handleDelete = async (movie) => {
@@ -101,6 +103,8 @@ class Movies extends Component {
 
     const { totalCount, data: movies } = this.getPageData();
 
+    const { user } = this.props;
+
     return (
       <div className="row">
         <div className="col-sm-3">
@@ -111,9 +115,11 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <Link className="btn btn-primary m-2" to="/movies/new">
-            Add a New Movie
-          </Link>
+          {user && (
+            <Link className="btn btn-primary m-2" to="/movies/new">
+              Add a New Movie
+            </Link>
+          )}
           <p>Showing {totalCount} movies in the database.</p>
           <SearchBox
             value={this.state.searchQuery}
