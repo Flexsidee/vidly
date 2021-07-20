@@ -152,7 +152,7 @@ class Movies extends Component {
   }
 }
 function demoAsyncCall() {
-  return new Promise((resolve) => setTimeout(() => resolve(), 2000));
+  return new Promise((resolve) => setTimeout(() => resolve(), 1500));
 }
 
 export default Movies;
